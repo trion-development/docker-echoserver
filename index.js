@@ -48,7 +48,7 @@ http
         res.write("===============\n\n")
 
         res.write(body);
-        res.write("\n\n===============\nend.")
+        res.write("\n\n===============\nend.\n")
         res.end();
       });
       return;
