@@ -5,7 +5,12 @@ var process = require('process')
 process.on('SIGINT', () => {
   console.info("Interrupted")
   process.exit(0)
-})
+});
+process.on('SIGTERM', () => {
+  console.info("TERM")
+  process.exit(0)
+});
+
 
 
 http
@@ -31,17 +36,10 @@ http
         body.push(chunk);
       }).on('end', () => {
         body = Buffer.concat(body).toString();
-        // console.log(`==== ${req.method} ${req.url}`);
-        // console.log('> Headers');
-        // console.log(req.headers);
-
-        // console.log('> Body');
-        // console.log(body);
 
         res.write("headers\n")
         res.write("===============\n\n")
 
-        // res.write(JSON.stringify(req.headers));
         for (const header in req.headers) {
             res.write(`${header}: ${req.headers[header]}\n`);
         }

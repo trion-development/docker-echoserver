@@ -7,13 +7,15 @@ ARG TARGETARCH
 
 WORKDIR /app
 RUN npm install -g pkg
-COPY index.js index.js
-RUN pkg index.js --compress GZip 
-RUN ls -lah; pwd
- 
+COPY build.sh /app/
+COPY index.js /app/
+
+RUN ./build.sh
+
+
 FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine
-RUN apk update && apk add --no-cache libstdc++ libgcc libc6-compat gcompat
 CMD ["/app"]
 EXPOSE 3000
+RUN apk -U add --no-cache libstdc++ libgcc libc6-compat gcompat
+COPY --from=builder /app/index /app
 USER 1000
-COPY --from=builder /app/index-linux /app
