@@ -13,3 +13,5 @@ esac;
 echo platform ${NODE_ARCH};
 
 pkg index.js --targets node18-linux-${NODE_ARCH} --compress GZip 
+
+ls -l
