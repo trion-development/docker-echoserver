@@ -1,4 +1,5 @@
-FROM --platform=${BUILDPLATFORM:-linux/amd64} node:lts-slim as builder
+FROM node:lts-slim as builder
+#FROM --platform=${BUILDPLATFORM:-linux/amd64} node:lts-slim as builder
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -13,7 +14,9 @@ COPY index.js /app/
 RUN ./build.sh
 
 
-FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine
+FROM alpine
+# FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine
+
 CMD ["/app"]
 EXPOSE 3000
 RUN apk -U add --no-cache libstdc++ libgcc libc6-compat gcompat
