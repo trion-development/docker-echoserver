@@ -15,7 +15,7 @@ jobs:
         id: prep
         run: |
           DOCKER_IMAGE=ghcr.io/trion-development/echoserver
-          VERSION=2
+          VERSION=1
           SHORTREF=${GITHUB_SHA::8}
 
           # If this is git tag, use the tag name as a docker tag
@@ -23,8 +23,8 @@ jobs:
             VERSION=${GITHUB_REF#refs/tags/v}
           fi
 
-          # TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:latest,${DOCKER_IMAGE}:${SHORTREF}"
-          TAGS="${DOCKER_IMAGE}:latest"
+          TAGS="${DOCKER_IMAGE}:${VERSION},${DOCKER_IMAGE}:latest,${DOCKER_IMAGE}:${SHORTREF}"
+          # TAGS="${DOCKER_IMAGE}:latest"
 
           echo ::set-output name=tags::${TAGS}
           echo ::set-output name=docker_image::${DOCKER_IMAGE}

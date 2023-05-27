@@ -1,4 +1,5 @@
 FROM node:lts-slim as builder
+#buildx only
 #FROM --platform=${BUILDPLATFORM:-linux/amd64} node:lts-slim as builder
 
 ARG TARGETPLATFORM
@@ -15,6 +16,7 @@ RUN ./build.sh
 
 
 FROM alpine
+#buildx only
 # FROM --platform=${BUILDPLATFORM:-linux/amd64} alpine
 
 CMD ["/app"]
