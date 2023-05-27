@@ -37,7 +37,7 @@ http
       }).on('end', () => {
         body = Buffer.concat(body).toString();
 
-        res.write("(server v1)\n")
+        res.write("(server v2)\n")
         res.write("headers\n")
         res.write("===============\n\n")
 

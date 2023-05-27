@@ -15,7 +15,7 @@ jobs:
         id: prep
         run: |
           DOCKER_IMAGE=ghcr.io/trion-development/echoserver
-          VERSION=1
+          VERSION=2
           SHORTREF=${GITHUB_SHA::8}
 
           # If this is git tag, use the tag name as a docker tag
